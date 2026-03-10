@@ -11,6 +11,23 @@
 
 <style>
 
+  .couple-names{
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+.couple-names .name{
+font-family:'Great Vibes',cursive;
+font-size:65px;
+color:#FFD700;
+}
+
+.couple-names .and{
+font-size:28px;
+margin:10px 0;
+font-weight:600;
+}
 .comment-box{
 
 background:#ffffff;
@@ -602,7 +619,15 @@ padding:40px;
 
 <section class="hero" id="cover">
 
-<h1>Nama Pria & Nama Wanita</h1>
+<h1 class="couple-names">
+
+<span class="name">Nama Pria</span>
+
+<span class="and">dan</span>
+
+<span class="name">Nama Wanita</span>
+
+</h1>
 
 <p>Undangan Pernikahan</p>
 
@@ -1065,4 +1090,5 @@ alert("Nomor rekening berhasil di copy");
 
 </body>
 </html>
+
 
