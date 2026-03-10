@@ -10,6 +10,43 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+.admin-panel{
+
+position:fixed;
+
+bottom:20px;
+
+right:20px;
+
+z-index:999;
+
+}
+
+.admin-btn{
+
+background:#FFD700;
+
+color:#000;
+
+border:none;
+
+padding:10px 18px;
+
+border-radius:25px;
+
+font-size:14px;
+
+cursor:pointer;
+
+box-shadow:0 5px 15px rgba(0,0,0,0.3);
+
+}
+
+.admin-btn:hover{
+
+background:#e6c200;
+
+}
 .card img{
 display:block;
 margin:auto;
@@ -276,11 +313,12 @@ Nama Wanita
 </div>
 
 </section>
+
 <section class="section">
 
 <h2>Lokasi Acara</h2>
 
-<p>Tempat Mempelai</p>
+<p>Jl. Batara, RT.03/RW.03, Ciluar, Kec. Bogor Utara, Kota Bogor</p>
 
 <br>
 
@@ -430,9 +468,9 @@ Detik
 
 </section>
 
-  <section class="section">
+<section class="section" id="generatorSection" style="display:none;">
 
-<h2>Generator Link Undangan</h2>
+<h2>Generator Link Undangan (Admin)</h2>
 
 <p>Masukkan nama tamu untuk membuat link undangan</p>
 
@@ -484,11 +522,34 @@ Creative Website by <b>SF AI DIGITAL</b>
 
 </section>
 
-</div>
+<div class="admin-panel">
 
+<button onclick="adminLogin()" class="admin-btn">
+⚙ Admin Panel
+</button>
+
+</div>
 
 <script>
 
+
+function adminLogin(){
+
+var password = prompt("Masukkan password admin:");
+
+if(password === "sfai2026"){
+
+document.getElementById("generatorSection").style.display = "block";
+
+alert("Login admin berhasil");
+
+}else{
+
+alert("Password salah");
+
+}
+
+}
 function openInvite(){
 
 document.getElementById("cover").style.display="none";
@@ -536,7 +597,7 @@ document.getElementById("name").value="";
 document.getElementById("message").value="";
 }
 
-  function generateLink(){
+function generateLink(){
 
 var name = document.getElementById("guestInput").value;
 
@@ -563,14 +624,8 @@ document.execCommand("copy");
 alert("Link berhasil di copy");
 
 }
+
 </script>
 
 </body>
-
 </html>
-
-
-
-
-
-
