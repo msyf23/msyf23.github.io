@@ -1,16 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  
-<meta property="og:title" content="Undangan Mempelai Pria & Mempelai Wanita">
 
-<meta property="og:description" content="Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Anda untuk menghadiri acara pernikahan kami.">
-
-<meta property="og:image" content="https://msyf23.github.io/images/wedding-preview.jpg">
-
-<meta property="og:url" content="https://msyf23.github.io/">
-
-<meta property="og:type" content="website">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -20,7 +11,7 @@
 
 <style>
 
-  .comment-box{
+.comment-box{
 
 background:#ffffff;
 
@@ -109,8 +100,88 @@ margin-bottom:10px;
 box-shadow:0 5px 15px rgba(0,0,0,0.1);
 
 }
+.gift-container{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:25px;
+margin-top:30px;
+}
 
-  .gift-container{
+.bank-card{
+
+background:#0f3d3e;
+color:white;
+
+padding:25px;
+
+border-radius:15px;
+
+width:260px;
+
+text-align:center;
+
+transition:0.3s;
+
+box-shadow:0 8px 20px rgba(0,0,0,0.25);
+
+}
+
+.bank-card:hover{
+
+transform:translateY(-6px);
+
+box-shadow:0 15px 35px rgba(0,0,0,0.35);
+
+}
+
+.bank-logo{
+
+width:70px;
+
+margin:10px auto;
+
+display:block;
+
+}
+
+.rek-number{
+
+font-size:18px;
+
+letter-spacing:2px;
+
+margin:5px 0;
+
+font-weight:bold;
+
+}
+
+.copy-btn{
+
+background:#FFD700;
+
+border:none;
+
+padding:8px 14px;
+
+border-radius:8px;
+
+cursor:pointer;
+
+font-size:13px;
+
+margin-top:5px;
+
+}
+
+.copy-btn:hover{
+
+background:#e6c200;
+
+}
+
+.gift-container{
 
 display:flex;
 flex-wrap:wrap;
@@ -213,6 +284,81 @@ transition:0.3s;
 background:#e6c200;
 
 transform:scale(1.05);
+
+}
+
+.gift-container{
+
+display:flex;
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+gap:30px;
+
+margin-top:30px;
+
+}
+
+.gift-box{
+
+background:#ffffff;
+
+padding:25px;
+
+border-radius:18px;
+
+width:260px;
+
+text-align:center;
+
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+
+}
+
+.bank-logo{
+
+width:90px;
+
+margin-bottom:8px;
+
+}
+.gift-container{
+
+display:flex;
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+gap:30px;
+
+margin-top:30px;
+
+}
+
+.gift-box{
+
+background:#f8f8f8;
+
+padding:25px;
+
+border-radius:15px;
+
+width:260px;
+
+text-align:center;
+
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+
+}
+
+.bank-logo{
+
+width:90px;
+
+margin-bottom:10px;
 
 }
 .admin-panel{
@@ -645,7 +791,7 @@ Namun apabila memberi adalah ungkapan tanda kasih:
 
 <p class="bank-name">Bank BCA</p>
 
-<p id="bcaPria" class="rek-number">1234567890</p>
+<p id="bcaPria" class="rek-number">8410575770</p>
 
 <button class="copy-btn" onclick="copyRek('bcaPria')">
 Copy Nomor Rekening
@@ -672,7 +818,7 @@ Copy Nomor Rekening
 Copy Nomor Rekening
 </button>
 
-<p class="owner">a.n Desi Rahmawati</p>
+<p class="owner">a.n Aisyah Rahma</p>
 
 </div>
 
@@ -755,19 +901,32 @@ Creative Website by <b>SF AI DIGITAL</b>
 <div class="admin-panel">
 
 <button onclick="adminLogin()" class="admin-btn">
-⚙ SF Digital
+⚙ Admin Panel
 </button>
 
 </div>
-
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script>
+// FIREBASE CONFIG
+const firebaseConfig = {
+  apiKey: "AIzaSyCQITZVqVUPl5zHQhTmbaFZlpBI05sbeWw",
+  authDomain: "undangandigital-69fec.firebaseapp.com",
+  projectId: "undangandigital-69fec",
+  storageBucket: "undangandigital-69fec.firebasestorage.app",
+  messagingSenderId: "719547779391",
+  appId: "1:719547779391:web:6e0546eec160da4b15ab8a"
+};
 
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
 
 function adminLogin(){
 
 var password = prompt("Masukkan password admin:");
 
-if(password === "202300"){
+if(password === "sfai2026"){
 
 document.getElementById("generatorSection").style.display = "block";
 
@@ -825,7 +984,6 @@ updateCountdown();
 function addComment(){
 
 var name = document.getElementById("name").value;
-
 var message = document.getElementById("message").value;
 
 if(name=="" || message=="") return;
@@ -833,9 +991,7 @@ if(name=="" || message=="") return;
 db.collection("ucapan").add({
 
 nama:name,
-
 pesan:message,
-
 waktu:firebase.firestore.FieldValue.serverTimestamp()
 
 });
@@ -857,7 +1013,6 @@ snapshot.forEach((doc)=>{
 const data = doc.data();
 
 const div = document.createElement("div");
-
 div.className="comment";
 
 div.innerHTML="<b>"+data.nama+"</b><br>"+data.pesan;
@@ -867,6 +1022,7 @@ comments.appendChild(div);
 });
 
 });
+
 function generateLink(){
 
 var name = document.getElementById("guestInput").value;
@@ -895,7 +1051,7 @@ alert("Link berhasil di copy");
 
 }
 
-  function copyRek(id){
+function copyRek(id){
 
 var text = document.getElementById(id).innerText;
 
@@ -905,42 +1061,7 @@ alert("Nomor rekening berhasil di copy");
 
 }
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCQITZVqVUPl5zHQhTmbaFZlpBI05sbeWw",
-  authDomain: "undangandigital-69fec.firebaseapp.com",
-  projectId: "undangandigital-69fec",
-  storageBucket: "undangandigital-69fec.firebasestorage.app",
-  messagingSenderId: "719547779391",
-  appId: "1:719547779391:web:6e0546eec160da4b15ab8a",
-  measurementId: "G-RJD2T0E1WD"
-};
-firebase.initializeApp(firebaseConfig);
-
-const db = firebase.firestore();
 </script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 </body>
-  <div class="comment-box">
-
-<input id="name" placeholder="Nama Anda">
-
-<textarea id="message" placeholder="Tulis ucapan"></textarea>
-
-<button onclick="addComment()">Kirim</button>
-
-</div>
-
-<div id="comments"></div>
 </html>
-
-
-
-
-
-
-
-
-
-
