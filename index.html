@@ -905,35 +905,88 @@ alert("Nomor rekening berhasil di copy");
 
 }
 
+<!-- FIREBASE LIBRARY -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+
+// ======================
+// FIREBASE CONFIG
+// ======================
+
 const firebaseConfig = {
   apiKey: "AIzaSyCQITZVqVUPl5zHQhTmbaFZlpBI05sbeWw",
   authDomain: "undangandigital-69fec.firebaseapp.com",
   projectId: "undangandigital-69fec",
   storageBucket: "undangandigital-69fec.firebasestorage.app",
   messagingSenderId: "719547779391",
-  appId: "1:719547779391:web:6e0546eec160da4b15ab8a",
-  measurementId: "G-RJD2T0E1WD"
+  appId: "1:719547779391:web:6e0546eec160da4b15ab8a"
 };
+
 firebase.initializeApp(firebaseConfig);
-
 const db = firebase.firestore();
+
+
+// ======================
+// KIRIM UCAPAN
+// ======================
+
+function addComment(){
+
+const name = document.getElementById("name").value;
+const message = document.getElementById("message").value;
+
+if(name === "" || message === ""){
+alert("Isi nama dan ucapan terlebih dahulu");
+return;
+}
+
+db.collection("ucapan").add({
+
+nama: name,
+pesan: message,
+waktu: firebase.firestore.FieldValue.serverTimestamp()
+
+});
+
+document.getElementById("name").value="";
+document.getElementById("message").value="";
+
+}
+
+
+// ======================
+// TAMPILKAN UCAPAN REALTIME
+// ======================
+
+db.collection("ucapan")
+.orderBy("waktu","desc")
+.onSnapshot((snapshot)=>{
+
+const comments = document.getElementById("comments");
+
+comments.innerHTML="";
+
+snapshot.forEach((doc)=>{
+
+const data = doc.data();
+
+const div = document.createElement("div");
+div.className="comment";
+
+div.innerHTML = "<b>"+data.nama+"</b><br>"+data.pesan;
+
+comments.appendChild(div);
+
+});
+
+});
+
 </script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 </body>
-  <div class="comment-box">
-
-<input id="name" placeholder="Nama Anda">
-
-<textarea id="message" placeholder="Tulis ucapan"></textarea>
-
-<button onclick="addComment()">Kirim</button>
-
-</div>
-
-<div id="comments"></div>
 </html>
+
 
 
 
