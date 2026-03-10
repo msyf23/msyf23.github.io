@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   
-<meta property="og:title" content="Undangan Pernikahan Ahmad & Aisyah">
+<meta property="og:title" content="Undangan Mempelai Pria & Mempelai Wanita">
 
 <meta property="og:description" content="Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Anda untuk menghadiri acara pernikahan kami.">
 
@@ -19,6 +19,112 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+
+  .gift-container{
+
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:30px;
+margin-top:30px;
+
+}
+
+.bank-card{
+
+background:linear-gradient(135deg,#0f3d3e,#062324);
+
+color:white;
+
+padding:30px;
+
+border-radius:20px;
+
+width:280px;
+
+text-align:center;
+
+box-shadow:0 10px 35px rgba(0,0,0,0.3);
+
+transition:all 0.4s ease;
+
+position:relative;
+
+}
+
+.bank-card:hover{
+
+transform:translateY(-10px) scale(1.03);
+
+box-shadow:0 20px 45px rgba(0,0,0,0.5);
+
+}
+
+.bank-logo{
+
+width:80px;
+
+margin:10px auto;
+
+display:block;
+
+}
+
+.bank-name{
+
+font-weight:bold;
+
+margin-top:5px;
+
+}
+
+.rek-number{
+
+font-size:18px;
+
+letter-spacing:2px;
+
+margin:5px 0;
+
+}
+
+.owner{
+
+font-size:13px;
+
+opacity:0.8;
+
+}
+
+.copy-btn{
+
+background:#FFD700;
+
+border:none;
+
+padding:10px 16px;
+
+border-radius:10px;
+
+cursor:pointer;
+
+margin-top:5px;
+
+font-size:13px;
+
+font-weight:bold;
+
+transition:0.3s;
+
+}
+
+.copy-btn:hover{
+
+background:#e6c200;
+
+transform:scale(1.05);
+
+}
 .admin-panel{
 
 position:fixed;
@@ -432,28 +538,53 @@ Detik
 
 <h2>Amplop Digital</h2>
 
-<div class="card">
+<p>
+Doa restu Anda merupakan karunia yang sangat berarti bagi kami.
+Namun apabila memberi adalah ungkapan tanda kasih:
+</p>
 
-<img src="images/bca.png" style="width:80px;margin-bottom:10px;">
+<div class="gift-container">
 
-<h3>Bank BCA</h3>
+<!-- PRIA -->
 
-<p>8410575770</p>
+<div class="bank-card">
 
-<p>a.n M. Syaefudin</p>
+<h3>Mempelai Pria</h3>
+
+<img src="images/bca.png" class="bank-logo">
+
+<p class="bank-name">Bank BCA</p>
+
+<p id="bcaPria" class="rek-number">1234567890</p>
+
+<button class="copy-btn" onclick="copyRek('bcaPria')">
+Copy Nomor Rekening
+</button>
+
+<p class="owner">a.n M. Syaefudin</p>
 
 </div>
 
 
-<div class="card">
+<!-- WANITA -->
 
-<img src="images/dana.png" style="width:80px;margin-bottom:10px;">
+<div class="bank-card">
 
-<h3>DANA</h3>
+<h3>Mempelai Wanita</h3>
 
-<p>085888053302</p>
+<img src="images/bca.png" class="bank-logo">
 
-<p>a.n M. Syaefudin</p>
+<p class="bank-name">Bank BCA</p>
+
+<p id="bcaWanita" class="rek-number">1234567890</p>
+
+<button class="copy-btn" onclick="copyRek('bcaWanita')">
+Copy Nomor Rekening
+</button>
+
+<p class="owner">a.n Desi Rahmawati</p>
+
+</div>
 
 </div>
 
@@ -647,9 +778,19 @@ alert("Link berhasil di copy");
 
 }
 
+  function copyRek(id){
+
+var text = document.getElementById(id).innerText;
+
+navigator.clipboard.writeText(text);
+
+alert("Nomor rekening berhasil di copy");
+
+}
 </script>
 
 </body>
 </html>
+
 
 
