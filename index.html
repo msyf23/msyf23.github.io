@@ -825,21 +825,48 @@ updateCountdown();
 function addComment(){
 
 var name = document.getElementById("name").value;
+
 var message = document.getElementById("message").value;
 
 if(name=="" || message=="") return;
 
-var comment = document.createElement("div");
-comment.className="comment";
+db.collection("ucapan").add({
 
-comment.innerHTML = "<b>"+name+"</b><br>"+message;
+nama:name,
 
-document.getElementById("comments").prepend(comment);
+pesan:message,
+
+waktu:new Date()
+
+});
 
 document.getElementById("name").value="";
 document.getElementById("message").value="";
-}
 
+}
+  db.collection("ucapan")
+.orderBy("waktu","desc")
+.onSnapshot((snapshot)=>{
+
+const comments = document.getElementById("comments");
+
+comments.innerHTML="";
+
+snapshot.forEach((doc)=>{
+
+const data = doc.data();
+
+const div = document.createElement("div");
+
+div.className="comment";
+
+div.innerHTML="<b>"+data.nama+"</b><br>"+data.pesan;
+
+comments.appendChild(div);
+
+});
+
+});
 function generateLink(){
 
 var name = document.getElementById("guestInput").value;
@@ -877,10 +904,31 @@ navigator.clipboard.writeText(text);
 alert("Nomor rekening berhasil di copy");
 
 }
-</script>
 
+  // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAWOxBaix9KykB_hiY6DO-0BCYJbZoYqfw",
+  authDomain: "sfdigitalundangan.firebaseapp.com",
+  projectId: "sfdigitalundangan",
+  storageBucket: "sfdigitalundangan.firebasestorage.app",
+  messagingSenderId: "289323488993",
+  appId: "1:289323488993:web:0e549a367549ccda1089a0"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+</script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 </body>
 </html>
+
 
 
 
