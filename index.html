@@ -430,6 +430,36 @@ Detik
 
 </section>
 
+  <section class="section">
+
+<h2>Generator Link Undangan</h2>
+
+<p>Masukkan nama tamu untuk membuat link undangan</p>
+
+<br>
+
+<input id="guestInput" placeholder="Nama Tamu"
+style="padding:12px;width:250px;border-radius:8px;border:1px solid #ccc;">
+
+<br><br>
+
+<button class="btn" onclick="generateLink()">
+Generate Link
+</button>
+
+<br><br>
+
+<input id="resultLink"
+style="width:90%;padding:10px;border-radius:8px;border:1px solid #ccc;"
+readonly>
+
+<br><br>
+
+<button class="btn" onclick="copyLink()">
+Copy Link
+</button>
+
+</section>
 
 <section class="footer">
 
@@ -506,11 +536,39 @@ document.getElementById("name").value="";
 document.getElementById("message").value="";
 }
 
+  function generateLink(){
+
+var name = document.getElementById("guestInput").value;
+
+if(name==""){
+alert("Masukkan nama tamu");
+return;
+}
+
+var baseURL = window.location.origin + window.location.pathname;
+
+var link = baseURL + "?to=" + encodeURIComponent(name);
+
+document.getElementById("resultLink").value = link;
+
+}
+
+function copyLink(){
+
+var copyText = document.getElementById("resultLink");
+
+copyText.select();
+document.execCommand("copy");
+
+alert("Link berhasil di copy");
+
+}
 </script>
 
 </body>
 
 </html>
+
 
 
 
